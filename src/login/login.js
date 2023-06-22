@@ -1,11 +1,14 @@
-const CLIENT_ID = "d5e58fe8140144978d2ccc0dc75c46ba";
+import { ACCESS_TOKEN, EXPIRES_IN, TOKEN_TYPE } from "../common";
+
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const scopes =
   "user-top-read user-follow-read playlist-read-private user-library-read"; //things that u r gonna access
-const REDIRECT_URI = "http://localhost:3000/login/login.html";
-const ACCESS_TOKEN_KEY = "accessToken";
-const APP_URL = "http://localhost:3000";
+const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
+const APP_URL = import.meta.env.VITE_APP_URL;
 
 const authoriseUser = () => {
+  console.log(CLIENT_ID);
+  console.log(REDIRECT_URI);
   const url = `https://accounts.spotify.com/authorize?response_type=token&client_id=${CLIENT_ID}&scope=${scopes}&redirect_uri=${REDIRECT_URI}&show_dialog=true"`;
   window.open(url, "login", "width=800,height=600");
 };
@@ -14,19 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
   loginButton.addEventListener("click", authoriseUser);
 });
 
-window.opener.setItemsInLocalStorage = ({
-  accessToken,
-  tokenType,
-  expiresIn,
-}) => {
-  localStorage.setItem("accessToken", accessToken);
-  localStorage.setItem("tokentype", tokenType);
-  localStorage.setItem("expiresIn", expiresIn);
+window.setItemsInLocalStorage = ({ accessToken, tokenType, expiresIn }) => {
+  localStorage.setItem(ACCESS_TOKEN, accessToken);
+  localStorage.setItem(TOKEN_TYPE, tokenType);
+  localStorage.setItem(EXPIRES_IN, expiresIn);
 };
 
 window.addEventListener("load", () => {
-  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+  const accessToken = localStorage.getItem(ACCESS_TOKEN);
   if (accessToken) {
+    console.log("ub");
     window.location = `${APP_URL}/dashboard/dashboard.html`;
   }
   //if window is still open
@@ -43,11 +43,12 @@ window.addEventListener("load", () => {
     if (accessToken) {
       window.close();
       console.log(accessToken, tokenType, expiresIn);
-      window.opener.setItemsInLocalStorage({
+      window.setItemsInLocalStorage({
         accessToken,
         tokenType,
         expiresIn,
       });
+      window.opener.location = `${APP_URL}/dashboard/dashboard.html`;
     } else {
       window.close();
     }
