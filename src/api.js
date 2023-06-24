@@ -23,7 +23,7 @@ const createAPIConfig = ({ accessToken, tokenType }, method = "GET") => {
   };
 };
 export const fetchRequest = async (endpoint) => {
-  const url = "https://api.spotify.com/v1/me";
+  const url = "https://api.spotify.com/v1/" + endpoint;
   const result = await fetch(url, createAPIConfig(getAccessToken()));
   return result.json();
 };
