@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spotify</title>
+    <link
+      rel="shortcut icon"
+      href="../assets/Spotify_Icon_RGB_Green.png "
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="../style.css " />
     <link
       rel="stylesheet"
@@ -19,7 +24,33 @@
     <main
       class="grid-template-areas grid h-full grid-cols-[250px_1fr] grid-rows-[1fr_auto]"
     >
-      <aside class="sidenav">sidenav</aside>
+      <aside class="sidenav">
+        <nav class="gap=8 flex flex-col items-start px-4 py-8">
+          <section>
+            <a href="/">
+              <img
+                class="h-10 w-full object-contain"
+                src="../assets/Spotify_Logo_CMYK_White.png"
+                alt="Spotifylogo"
+              />
+            </a>
+          </section>
+          <section>
+            <ul class="flex flex-col gap-4 text-sm text-secondary">
+              <li
+                class="flex cursor-pointer items-center gap-2 hover:text-primary"
+              >
+                <span class="material-symbols-outlined">home</span>Home
+              </li>
+              <li
+                class="flex cursor-pointer items-center gap-2 hover:text-primary"
+              >
+                <span class="material-symbols-outlined">search</span>Search
+              </li>
+            </ul>
+          </section>
+        </nav>
+      </aside>
       <article class="content relative overflow-auto bg-transparent">
         <header class="header z-10 bg-transparent px-8 py-4">
           <nav class="relative flex justify-end">
@@ -73,10 +104,10 @@
         <section id="page-content" class="mt-60 bg-black-base"></section>
       </article>
       <footer
-        class="now-playing border-t border-t-light-black bg-black-secondary px-4 text-secondary"
+        class="now-playing border-t border-t-light-black bg-black-secondary p-4 px-4 text-secondary"
       >
         <section class="grid grid-cols-[1fr_2fr_1fr] gap-4">
-          <section class="grid grid-cols-[auto_1fr] place-content-center gap-4">
+          <section id="song-info" class="invisible">
             <img id="now-playing-image" class="h-12 w-12" src="" alt="tilte" />
             <section class="flex flex-col justify-center">
               <h2
@@ -93,27 +124,25 @@
             id="audio-control"
             class="flex flex-col items-center justify-center"
           >
-            <section
-              class="flex items-center justify-center hover:text-primary"
-            >
-              <button id="prev">
-                <span style="font-size: 40px" class="material-symbols-outlined">
+            <section class="flex items-center justify-center">
+              <button id="prev" class="hover:text-primary">
+                <span style="font-size: 36px" class="material-symbols-outlined">
                   skip_previous
                 </span>
               </button>
-              <button id="play">
+              <button id="play" class="hover:text-primary">
                 <span style="font-size: 40px" class="material-symbols-outlined">
                   play_circle
                 </span>
               </button>
-              <button id="next">
-                <span style="font-size: 40px" class="material-symbols-outlined">
+              <button id="next" class="hover:text-primary">
+                <span style="font-size: 36px" class="material-symbols-outlined">
                   skip_next
                 </span>
               </button>
             </section>
-            <section class="flex w-full items-center justify-center gap-4 p-1">
-              <span id="song-duration-completed">0:00</span>
+            <section class="flex w-full items-center justify-center gap-4">
+              <span id="song-duration-completed" class="text-sm">0:00</span>
               <section
                 id="timeline"
                 class="w-full cursor-pointer rounded-3xl bg-secondary"
@@ -123,7 +152,7 @@
                   class="h-2 w-0 rounded-3xl bg-green"
                 ></section>
               </section>
-              <span id="total-song-duration">0:00</span>
+              <span id="total-song-duration" class="text-sm">0:00</span>
             </section>
           </section>
           <!--section for audio voulume-->
