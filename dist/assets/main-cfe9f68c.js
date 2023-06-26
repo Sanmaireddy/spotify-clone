@@ -1,0 +1,1 @@
+import"./modulepreload-polyfill-3cfb730f.js";/* empty css              */const o="http://localhost:4173";document.addEventListener("DOMContentLoaded",()=>{var t=localStorage.getItem("accessToken");t?window.location=`${o}/dashboard/dashboard.html`:window.location=`${o}/login/login.html`});
