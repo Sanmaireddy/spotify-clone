@@ -129,7 +129,7 @@ const updateIconsForPlayMode = (id) => {
   }
 };
 
-// const timeline =document.quer ySelector("#")
+// // const timeline =document.quer ySelector("#")
 const onAudioMetaDataLoaded = (id) => {
   const totalSongDuration = document.querySelector("#total-song-duration");
   totalSongDuration.textContent = `0:${audio.duration.toFixed(0)}`;
